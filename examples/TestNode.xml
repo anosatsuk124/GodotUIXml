@@ -1,0 +1,12 @@
+<Control id="root" proto_scene="my_window.tscn">
+  <Button id="unique1"
+    Text="Hello">
+    <Label id="unique2" Text="World"/>
+    <RichTextLabel id="unique4"></RichTextLabel>
+    <Label id="unique3"></Label>
+  </Button>
+  <Label id="unique5"></Label>
+  <!-- With no ids below -->
+  <Button Text="Hello No id"/>
+  <Label proto_scene="my_label.tscn"/>
+</Control>
