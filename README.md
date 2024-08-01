@@ -1,5 +1,22 @@
 # Godot UI Generator from XML
 
+## Usage and Installation
+
+### Installation
+
+```shell
+git clone git@github.com:anosatsuk124/GodotUIXml.git
+cd GodotUIXml
+```
+
+### Usage
+
+```shell
+dotnet run /path/to/xml/File.xml
+```
+
+🥳: That's it! The generated code will be saved as `File.generated.cs`.
+
 ## Sample Generated Code
 
 > [!NOTE]
