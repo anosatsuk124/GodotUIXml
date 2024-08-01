@@ -46,7 +46,10 @@ class ClassGenerator(string className, XElement root)
         source.AppendLine("{");
 
         GenerateProperties(root);
+
         GenerateReadyMethod();
+
+        GenerateGetRootMethod(root);
 
         source.AppendLine("}");
     }
@@ -77,6 +80,17 @@ class ClassGenerator(string className, XElement root)
 
         GenerateInstantiationBlock(root);
 
+        source.AppendLine("}");
+    }
+
+    private void GenerateGetRootMethod(XElement element)
+    {
+        var type = element.Name.LocalName;
+        var getChild = $"GetChild<{type}>(0)";
+
+        source.AppendLine($"public {type} GetRoot()");
+        source.AppendLine("{");
+        source.AppendLine($"return this.{getChild};");
         source.AppendLine("}");
     }
 
