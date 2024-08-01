@@ -144,7 +144,7 @@ class ClassGenerator(string className, XElement root)
         if (id is not null)
         {
             var name = id.Value;
-            source.AppendLine($"{name} = {node};");
+            source.AppendLine($"this.{name} = {node};");
         }
 
         var attrs = element.Attributes().Where(a => a.Name != IDAttribute && a.Name != ProtoSceneAttribute);
