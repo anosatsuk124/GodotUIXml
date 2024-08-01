@@ -5,17 +5,17 @@ namespace GodotUIXml;
 
 class ClassGenerator
 {
+    public string className { get; }
+    public XElement root { get; }
+
     private ClassGenerator(string _className, XElement _root)
     {
         className = _className;
         root = _root;
     }
 
-    private string className { get; }
-    private XElement root { get; }
-
-    const string IDAttribute = "id";
-    const string ProtoSceneAttribute = "proto_scene";
+    protected const string IDAttribute = "id";
+    protected const string ProtoSceneAttribute = "proto_scene";
 
     private int rootIndex = 0;
     private int sceneIndex = 0;
@@ -143,6 +143,7 @@ class ClassGenerator
         source.AppendLine($"{target}.{property} = \"{value}\";");
     }
 
+    // TODO: Refactor this with splitting the code into multiple methods.
     private void GenerateInstantiationBlock(XElement element)
     {
         var type = element.Name.LocalName;
