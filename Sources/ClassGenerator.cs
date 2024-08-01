@@ -3,9 +3,16 @@ using System.Xml.Linq;
 
 namespace GodotUIXml;
 
-class ClassGenerator(string className, XElement root)
+class ClassGenerator
 {
-    public string className { get; } = className;
+    private ClassGenerator(string _className, XElement _root)
+    {
+        className = _className;
+        root = _root;
+    }
+
+    private string className { get; }
+    private XElement root { get; }
 
     const string IDAttribute = "id";
     const string ProtoSceneAttribute = "proto_scene";
