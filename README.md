@@ -2,6 +2,9 @@
 
 ## Sample Generated Code
 
+> [!NOTE]
+> For more detailed examples, see [`/examples`](https://github.com/anosatsuk124/GodotUIXml/tree/master/examples) directory.
+
 FileName: `TestNode.xml`
 
 ```xml
@@ -19,7 +22,7 @@ FileName: `TestNode.xml`
 </Control>
 ```
 
-FileName: `TestNode.Generated.cs`
+FileName: `TestNode.generated.cs`
 
 ```csharp
 using Godot;
