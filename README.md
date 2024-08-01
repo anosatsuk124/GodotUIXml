@@ -2,16 +2,29 @@
 
 ## Usage and Installation
 
+### TLDR;
+
+If you want to try the generator with examples, you just use the following commands.
+
+```bash
+git clone git@github.com:anosatsuk124/GodotUIXml.git
+
+cd GodotUIXml
+cd exmaples
+
+for f in $(find . -name '*.xml'); do dotnet run "$f" --project ../; done
+```
+
 ### Installation
 
-```shell
+```sh
 git clone git@github.com:anosatsuk124/GodotUIXml.git
 cd GodotUIXml
 ```
 
 ### Usage
 
-```shell
+```sh
 dotnet run /path/to/xml/File.xml
 ```
 
