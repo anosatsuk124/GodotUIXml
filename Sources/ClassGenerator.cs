@@ -42,7 +42,7 @@ class ClassGenerator(string className, XElement root)
 
     private void GenerateClass()
     {
-        source.AppendLine($"public partial class {className} : Node");
+        source.AppendLine($"public partial class {className} : Control");
         source.AppendLine("{");
 
         GenerateProperties(root);
