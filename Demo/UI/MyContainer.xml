@@ -1,0 +1,4 @@
+<TabContainer>
+  <Control id="editor1"/>
+  <MyEditor id="editor2" Name="Editor2"/>
+</TabContainer>

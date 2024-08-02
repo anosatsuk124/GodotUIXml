@@ -1,0 +1,8 @@
+<VBoxContainer Name="Editor">
+  <TextEdit
+    PlaceholderText="Enter your text here"
+    CustomMinimumSize="(320, 320)"
+    DrawSpaces="true"
+    />
+  <Button Text="Enter"/>
+</VBoxContainer>

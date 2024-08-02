@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Compile Remove="examples\**\*.cs" />
+    <Compile Remove="Demo\**\*.cs" />
   </ItemGroup>
 
 </Project>
