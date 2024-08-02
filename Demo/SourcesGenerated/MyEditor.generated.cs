@@ -2,9 +2,6 @@ using Godot;
 public partial class MyEditor : VBoxContainer
 {
 public TextEdit textEdit;
-public MyEditor() : base()
-{
-}
 public override void _Ready()
 {
 var root_0 = this;

@@ -1,9 +1,6 @@
 using Godot;
 public partial class MyMain : Container
 {
-public MyMain() : base()
-{
-}
 public override void _Ready()
 {
 var root_0 = this;
