@@ -49,14 +49,15 @@ class ClassGenerator
 
     private void GenerateClass()
     {
-        source.AppendLine($"public partial class {className} : Control");
+        var type = root.Name.LocalName;
+        source.AppendLine($"public partial class {className} : {type}");
         source.AppendLine("{");
 
         GenerateProperties(root);
 
         GenerateReadyMethod();
 
-        GenerateGetRootMethod(root);
+        GenerateGetRootMethod();
 
         source.AppendLine("}");
     }
@@ -85,14 +86,17 @@ class ClassGenerator
 
         Root("this");
 
-        GenerateInstantiationBlock(root);
+        GenerateSetPropertyStatemement("this", root);
+
+        var children = root.Elements();
+        GenerateInstantiationBlock(children);
 
         source.AppendLine("}");
     }
 
-    private void GenerateGetRootMethod(XElement element)
+    private void GenerateGetRootMethod()
     {
-        var type = element.Name.LocalName;
+        var type = root.Name.LocalName;
         var getChild = $"GetChild<{type}>(0)";
 
         source.AppendLine($"public {type} GetRoot()");
@@ -143,8 +147,24 @@ class ClassGenerator
         source.AppendLine($"{target}.{property} = \"{value}\";");
     }
 
+    private void GenerateSetPropertyStatemement(string node, XElement element)
+    {
+        var id = element.Attribute(IDAttribute);
+        if (id is not null)
+        {
+            var name = id.Value;
+            source.AppendLine($"this.{name} = {node};");
+        }
+
+        var attrs = element.Attributes().Where(a => a.Name != IDAttribute && a.Name != ProtoSceneAttribute);
+        foreach (var attr in attrs)
+        {
+            SetProperty(node, attr.Name.LocalName, attr.Value);
+        }
+    }
+
     // TODO: Refactor this with splitting the code into multiple methods.
-    private void GenerateInstantiationBlock(XElement element)
+    private void GenerateInstantiationStatements(XElement element)
     {
         var type = element.Name.LocalName;
 
@@ -162,30 +182,23 @@ class ClassGenerator
             node = Node($"new {type}()");
         }
 
-        var id = element.Attribute(IDAttribute);
-        if (id is not null)
-        {
-            var name = id.Value;
-            source.AppendLine($"this.{name} = {node};");
-        }
-
-        var attrs = element.Attributes().Where(a => a.Name != IDAttribute && a.Name != ProtoSceneAttribute);
-        foreach (var attr in attrs)
-        {
-            SetProperty(node, attr.Name.LocalName, attr.Value);
-        }
+        GenerateSetPropertyStatemement(node, element);
 
         AddChild(rootStack.Peek(), node);
 
-        var elements = element.Elements();
-        if (elements.Count() == 0) return;
-
         Root(node);
-        foreach (var elem in elements)
+    }
+
+    private void GenerateInstantiationBlock(IEnumerable<XElement> elements)
+    {
+        foreach (var element in elements)
         {
-            GenerateInstantiationBlock(elem);
+            GenerateInstantiationStatements(element);
+
+            var children = element.Elements();
+            GenerateInstantiationBlock(children);
+            rootStack.Pop();
         }
-        rootStack.Pop();
     }
 }
 
