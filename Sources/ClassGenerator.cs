@@ -144,7 +144,16 @@ class ClassGenerator
 
     private void SetProperty(string target, string property, string value)
     {
-        source.AppendLine($"{target}.{property} = \"{value}\";");
+        var sb = new StringBuilder();
+        sb.Append($"{target}.{property} = ");
+
+        var literal = Literal.Parse(value);
+
+        sb.Append(literal.ToCSharpLiteral());
+
+        sb.Append(";");
+
+        source.AppendLine(sb.ToString());
     }
 
     private void GenerateSetPropertyStatemement(string node, XElement element)
