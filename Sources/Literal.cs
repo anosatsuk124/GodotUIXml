@@ -21,13 +21,13 @@ public abstract record Literal()
     {
         return text switch
         {
-            var s when s.StartsWith("#") => new NumberLiteral(double.Parse(s[1..])),
-            var s when s.StartsWith('"') && s.EndsWith('"') => new StringLiteral(s[1..^1]),
-            var s when s.StartsWith('\'') && s.EndsWith('\'') => new StringLiteral(s[1..^1]),
-            "true" or "false" => new BooleanLiteral(true),
-            var s when s.StartsWith("[") && s.EndsWith("]") => ParseArray(s[1..^1]),
-            var s when s.StartsWith("(") && s.EndsWith(")") => ParseVector(s[1..^1]),
-            _ => new StringLiteral(text)
+            ['#', .. var s] => ParseNumber(s),
+            ['"', .. var s, '"'] => ParseString(s),
+            ['\'', .. var s, '\''] => ParseString(s),
+            ['[', .. var s, ']'] => ParseArray(s),
+            ['(', .. var s, ')'] => ParseVector(s),
+            "true" or "false" => ParseBoolean(text),
+            _ => ParseString(text),
         };
     }
 
@@ -36,13 +36,13 @@ public abstract record Literal()
         return this switch
         {
             NumberLiteral n => n.Value.ToString(),
-            StringLiteral s => $"\"{s.Value}\"",
+            StringLiteral s => $"\"{s.Value.ToString()}\"",
             BooleanLiteral b => b.Value.ToString().ToLower(),
             ArrayLiteral a => $"[ {string.Join(", ", a.Value.Select(x => x.ToCSharpLiteral()))} ]",
             VectorLiteral v => v switch
             {
-                Vector2Literal v2 => $"new Vector2({v2.X.Value}, {v2.Y.Value})",
-                Vector3Literal v3 => $"new Vector3({v3.X.Value}, {v3.Y.Value}, {v3.Z.Value})",
+                Vector2Literal v2 => $"new Vector2({v2.X.ToCSharpLiteral()}, {v2.Y.ToCSharpLiteral()})",
+                Vector3Literal v3 => $"new Vector3({v3.X.ToCSharpLiteral()}, {v3.Y.ToCSharpLiteral()}, {v3.Z.ToCSharpLiteral()})",
                 _ => throw new NotImplementedException()
             },
             _ => throw new NotImplementedException()
