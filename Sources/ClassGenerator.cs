@@ -55,8 +55,17 @@ class ClassGenerator
 
         GenerateProperties(root);
 
+        GenerateDefaultConstructor();
+
         GenerateReadyMethod();
 
+        source.AppendLine("}");
+    }
+
+    private void GenerateDefaultConstructor()
+    {
+        source.AppendLine($"public {className}() : base()");
+        source.AppendLine("{");
         source.AppendLine("}");
     }
 

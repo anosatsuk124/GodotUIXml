@@ -3,6 +3,9 @@ public partial class MyContainer : TabContainer
 {
 public Control editor1;
 public MyEditor editor2;
+public MyContainer() : base()
+{
+}
 public override void _Ready()
 {
 var root_0 = this;
