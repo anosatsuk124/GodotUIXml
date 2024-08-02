@@ -1,7 +1,0 @@
-<TestNode>
-  <Button>
-    <TestNode id="Nyan" 
-      proto_scene="Scenes/TestNode.tscn"
-      TestValue="Myaow"/>
-  </Button>
-</TestNode>

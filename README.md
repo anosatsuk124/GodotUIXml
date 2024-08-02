@@ -33,7 +33,7 @@ dotnet run /path/to/xml/File.xml
 ## Sample Generated Code
 
 > [!NOTE]
-> For more detailed examples, see [`/examples`](https://github.com/anosatsuk124/GodotUIXml/tree/master/examples) directory.
+> For more detailed examples, see [`/Demo/UI`](https://github.com/anosatsuk124/GodotUIXml/tree/master/Demo/UI) and [`/Demo/SourcesGenerated`](https://github.com/anosatsuk124/GodotUIXml/tree/master/Demo/SourcesGenerated) directory.
 
 FileName: `TestNode.xml`
 

@@ -1,5 +1,6 @@
 <VBoxContainer Name="Editor">
   <TextEdit
+    id="textEdit"
     PlaceholderText="Enter your text here"
     CustomMinimumSize="(320, 320)"
     DrawSpaces="true"

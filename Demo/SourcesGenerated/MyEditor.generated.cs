@@ -1,11 +1,13 @@
 using Godot;
 public partial class MyEditor : VBoxContainer
 {
+public TextEdit textEdit;
 public override void _Ready()
 {
 var root_0 = this;
 this.Name = "Editor";
 var node_0 = new TextEdit();
+this.textEdit = node_0;
 node_0.PlaceholderText = "Enter your text here";
 node_0.CustomMinimumSize = new Vector2(320, 320);
 node_0.DrawSpaces = true;
