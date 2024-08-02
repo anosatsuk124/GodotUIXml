@@ -16,8 +16,4 @@ node_1.Text = "Enter";
 root_0.AddChild(node_1);
 var root_2 = node_1;
 }
-public VBoxContainer GetRoot()
-{
-return this.GetChild<VBoxContainer>(0);
-}
 }

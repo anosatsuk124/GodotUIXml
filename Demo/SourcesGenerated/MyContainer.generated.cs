@@ -16,8 +16,4 @@ node_1.Name = "Editor2";
 root_0.AddChild(node_1);
 var root_2 = node_1;
 }
-public TabContainer GetRoot()
-{
-return this.GetChild<TabContainer>(0);
-}
 }

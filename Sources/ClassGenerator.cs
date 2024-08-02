@@ -57,8 +57,6 @@ class ClassGenerator
 
         GenerateReadyMethod();
 
-        GenerateGetRootMethod();
-
         source.AppendLine("}");
     }
 
@@ -91,17 +89,6 @@ class ClassGenerator
         var children = root.Elements();
         GenerateInstantiationBlock(children);
 
-        source.AppendLine("}");
-    }
-
-    private void GenerateGetRootMethod()
-    {
-        var type = root.Name.LocalName;
-        var getChild = $"GetChild<{type}>(0)";
-
-        source.AppendLine($"public {type} GetRoot()");
-        source.AppendLine("{");
-        source.AppendLine($"return this.{getChild};");
         source.AppendLine("}");
     }
 
@@ -172,11 +159,9 @@ class ClassGenerator
         }
     }
 
-    // TODO: Refactor this with splitting the code into multiple methods.
     private void GenerateInstantiationStatements(XElement element)
     {
         var type = element.Name.LocalName;
-
         var scene = element.Attribute(ProtoSceneAttribute);
 
         string node;
