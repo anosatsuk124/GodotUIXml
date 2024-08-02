@@ -1,4 +1,4 @@
-<TestNode proto_scene="Scenes/TestNode.tscn">
+<TestNode>
   <Button>
     <TestNode id="Nyan" 
       proto_scene="Scenes/TestNode.tscn"

@@ -1,4 +1,4 @@
-<Control id="root" proto_scene="my_window.tscn">
+<Control id="root">
   <Button id="unique1"
     Text="Hello">
     <Label id="unique2" Text="World"/>
